@@ -17,9 +17,9 @@ namespace Project.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Create()
+        public  IActionResult Create()
         {
-            return View(await db.Specialnocti.ToListAsync());
+            return View();
         }
         
     }
