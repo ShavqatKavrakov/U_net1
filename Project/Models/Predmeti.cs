@@ -8,7 +8,6 @@ namespace Project.Models
         public int Id { get; set; }
         public string PredmetName { get; set; } = null!;
         public int SpecId { get; set; }
-        public int Semesetr { get; set; }
-        public 
+        public int Semesetr { get; set; } 
     }
 }

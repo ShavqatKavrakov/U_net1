@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Project.Models.ModelViews.Predmet;
 
 namespace Project.Controllers
 {
@@ -16,11 +18,28 @@ namespace Project.Controllers
         {
             return View();
         }
-
-        public  IActionResult Create()
+        #region Добавить предмет
+        [HttpGet]
+        public IActionResult Create()
         {
-            return View();
+            CreateView viewPredmet = new CreateView
+            {
+                SelectList=new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
+            };
+            
+            return View(viewPredmet);
         }
-        
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] Predmeti predmet)
+        {
+
+            db.Predmeti.Add(predmet);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
     }
 }

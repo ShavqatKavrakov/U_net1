@@ -1,1 +1,22 @@
-﻿
+﻿@model CreateViewPredmet;
+
+<h2>Добовление преподователь</h2>
+
+<form asp-action="create" asp-controller="Predmet">
+
+    <p>
+         <select name="SpecId" asp-items="Model.SelectList"></select>
+    </p>
+    <p>
+        <label>Имя: </label>
+        <input name="PredmetName" />
+    </p>
+    <p>
+        <label>Семестер: </label>
+        <input name="Semesetr" />
+    </p>
+
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+</form>
