@@ -1,0 +1,21 @@
+﻿@model Project.Models.ModelViews.Predmet.CreateOrEditView;
+<h2>Редактирование предметь</h2>
+<form asp-action="edit"  asp-controller="Predmet" asp-route-id="@Model.Predmet!.Id">
+   
+    @Html.HiddenFor(model=>model.Predmet!.Id)
+    <p>
+         <select asp-for="Predmet!.SpecId" asp-items="Model.SelectList"></select>
+    </p>
+    <p>
+        <label asp-for="Predmet!.Semesetr">Семестр</label><br/>
+        <input type="number" asp-for="Predmet!.Semesetr">
+    </p>
+
+    <p>
+        <label asp-for="Predmet!.PredmetName" >Имя</label><br />
+        <input type="text" asp-for="Predmet!.PredmetName">
+    </p>
+    <p>
+        <input type="submit" value="Сохранить" />
+    </p> 
+</form>

@@ -45,7 +45,6 @@ namespace Project.Controllers
                 default:
                     prep = prep.OrderBy(x => x.Id);
                     break;
-
             }
 
             return View( await prep.ToListAsync());

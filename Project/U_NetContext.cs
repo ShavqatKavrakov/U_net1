@@ -17,8 +17,8 @@ namespace Project
         public U_NetContext(DbContextOptions<U_NetContext> options)
             : base(options)
         {
-            //Database.EnsureDeleted();
-            Database.EnsureCreated();
+        // Database.EnsureDeleted();
+         Database.EnsureCreated();
         }
     }
 }

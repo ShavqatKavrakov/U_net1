@@ -1,44 +1,52 @@
 ﻿@model Project.Models.ModelViews.Predmet.IndexView;
 
 <p>
-<a asp-action="create" asp-controller="Predmet">Добавить предмет</a>
+    <a asp-action="create" asp-controller="Predmet">Добавить предмет</a>
 </p>
 
 <form>
     <p>
-       <select name="specId" asp-items="Model.Specialnoctis"></select>
+        <select name="specId" asp-items="Model.Specialnoctis"></select>
     </p>
 
     <p>
-    Название предмет: <input type="text" name="searchByName" />
-                    <input type="submit" value="Искать">
-   </p>
+        Название предмет: <input type="text" name="searchByName" />
+        <input type="submit" value="Искать">
+    </p>
 </form>
 <table class="table">
     <tr>
         <th>
-        Номер
+            Номер
         </th>
         <th>
-        Специальность
+            Специальность
         </th>
         <th>
-           @Html.ActionLink("Семестр","Index",new {sortOrder=ViewBag.SemestSortParam,searchByName=ViewBag.SearchByName})
+            @Html.ActionLink("Семестр","Index",new {sortOrder=ViewBag.SemestSortParam,searchByName=ViewBag.SearchByName})
         </th>
-        
+
         <th>
             Предмет
         </th>
-    @foreach(var item in Model.Predmetis)
-    {
+        <th></th>
+        @foreach (var item in Model.Predmetis)
+        {
         <tr>
             <td>@item.Id</td>
             <td>@item.Specialnocti?.SpecName</td>
             <td>@item.Semesetr</td>
             <td>@item.PredmetName</td>
-           
+            <td>
+                <a asp-action="Edit" asp-controller="Predmet" asp-route-id="@item.Id" class="btn btn-primary">Изменить</a>
+            </td>
+            <td>
+                <form asp-action="Delete" asp-controller="Predmet" asp-route-id="@item.Id" method="post">
+                    <input type="submit" class="btn btn-danger" value="Удалить">
+                </form>
+            </td>
         </tr>
-    }
+        }
 
 </table>
 

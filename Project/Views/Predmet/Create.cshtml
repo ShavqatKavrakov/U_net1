@@ -1,4 +1,4 @@
-﻿@model Project.Models.ModelViews.Predmet.CreateView;
+﻿@model Project.Models.ModelViews.Predmet.CreateOrEditView;
 
 <h2>Добовление предмет</h2>
 
@@ -8,15 +8,14 @@
 
          <select name="SpecId" asp-items="Model.SelectList"></select>
     </p>
+     <p>
+        <label>Семестер: </label>
+        <input type="number" name="Semesetr" />
+    </p>
     <p>
         <label>Имя: </label>
-        <input name="PredmetName" />
+        <input type="text" name="PredmetName" />
     </p>
-    <p>
-        <label>Семестер: </label>
-        <input name="Semesetr" />
-    </p>
-
     <p>
         <input type="submit" value="Отправить" />
     </p>

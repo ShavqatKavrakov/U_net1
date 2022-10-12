@@ -9,6 +9,5 @@ namespace Project.Models
         public string SpecName { get; set; } = null!;
         public List<Predmeti> Predmetis { get; set; } = new List<Predmeti>();
         public List<Studenti> Studentis { get; set; } = new List<Studenti>();
-        
     }
 }

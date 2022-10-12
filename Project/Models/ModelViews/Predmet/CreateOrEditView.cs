@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Project.Models.ModelViews.Predmet
 {
-    public class CreateView
+    public class CreateOrEditView
     {
         public SelectList SelectList { get; set; } = new SelectList(new List<Specialnocti>(), "Id", "Name");
+        public Predmeti? Predmet { get; set; }
     }
 }

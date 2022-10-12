@@ -14,7 +14,7 @@ namespace Project.Controllers
         {
             this.db = db;
         }
-        #region Интерфейс Специальность + Сортировка + Фильтр 
+        #region Интерфейс Предмет + Сортировка + Фильтр 
         public IActionResult Index(string? sortOrder, int? specId, string? searchByName)
         {
             IQueryable<Predmeti> predmets = db.Predmeti.Include(s => s.Specialnocti);
@@ -56,11 +56,11 @@ namespace Project.Controllers
         }
         #endregion
 
-        #region Добавить предмет
+        #region Добавить Предмет
         [HttpGet]
         public IActionResult Create()
         {
-            CreateView viewPredmet = new CreateView
+            CreateOrEditView viewPredmet = new CreateOrEditView
             {
                 SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
             };
@@ -77,6 +77,62 @@ namespace Project.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        #endregion
+
+        #region Изменит Предмет
+
+        public async Task<IActionResult> Edit(int? Id)
+        {
+            if (Id != null)
+            {
+                var prep = await db.Predmeti.FirstOrDefaultAsync(p => p.Id == Id);
+
+                if (prep != null)
+                {
+                    var viewEdit = new CreateOrEditView
+                    {
+                        SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName"),
+                        Predmet = prep
+                    };
+
+                    return View(viewEdit);
+                }
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Predmeti predmet)
+        {
+            db.Predmeti.Update(predmet);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        #endregion
+
+        #region Удалить Предмет
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id != null)
+            {
+                var pred = await db.Predmeti.FirstOrDefaultAsync(p => p.Id == id);
+
+                if (pred != null)
+                {
+                    db.Predmeti.Remove(pred);
+                    await db.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
+            return NotFound();
+        }
+
         #endregion
 
     }

@@ -9,7 +9,7 @@ namespace Project.Models
         public int Id { get; set; }
         public string StudName { get; set; } = null!;
         public int Kurs { get; set; }
-        public int SpecId { get; set; }
+        public int SpecId { get; set; }  
         [ForeignKey("SpecId")]
         public Specialnocti? Specialnoct { get; set; }
     }
