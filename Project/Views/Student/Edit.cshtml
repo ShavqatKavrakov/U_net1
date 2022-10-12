@@ -1,0 +1,23 @@
+﻿@model Project.Models.ModelViews.Student.EditView;
+<h2>Редактирование предметь</h2>
+<form asp-action="edit"  asp-controller="Student" asp-route-id="@Model.Student!.Id">
+   
+    @Html.HiddenFor(model=>model.Student!.Id)
+     <p>
+        <label asp-for="Student!.SpecId">Наименование Специальност</label><br/>
+         <select asp-for="Student!.SpecId" asp-items="Model.SelectList"></select>
+    </p>
+    
+    <p>
+        <label asp-for="Student!.Kurs">Курс</label><br/>
+        <input type="number" asp-for="Student!.Kurs">
+    </p>
+    <p>
+        <label asp-for="Student!.StudName" >ФИО Студента</label><br />
+        <input type="text" asp-for="Student!.StudName">
+    </p>
+
+    <p>
+        <input type="submit" value="Сохранить" />
+    </p> 
+</form>

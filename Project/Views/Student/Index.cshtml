@@ -1,0 +1,45 @@
+﻿@model Project.Models.ModelViews.Student.IndexView;
+
+<p>
+    <a asp-action="create" asp-controller="Student">Добавить предмет</a>
+</p>
+
+<form>
+    <p>
+        ФИО Студента: <input type="text" name="searchByName" />
+        <input type="submit" value="Искать">
+    </p>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            ФИО Студента
+        </th>
+        <th>
+            @Html.ActionLink("Курс","Index",new {sortOrder=ViewBag.SortByKurs,searchByName=ViewBag.SearchByName})
+        </th>
+
+        <th>
+            Наименование специальност
+        </th>
+        <th></th>
+        @foreach (var item in Model.Studentis)
+        {
+        <tr>
+            <td>@item.StudName</td>
+            <td>@item.Kurs</td>
+            <td>@item.Specialnoct?.SpecName</td>
+            <td>
+                <a asp-action="Edit" asp-controller="Student" asp-route-id="@item.Id" class="btn btn-primary">Изменить</a>
+            </td>
+            <td>
+                <form asp-action="Delete" asp-controller="Student" asp-route-id="@item.Id" method="post">
+                    <input type="submit" class="btn btn-danger" value="Удалить">
+                </form>
+            </td>
+        </tr>
+        }
+
+</table>
+
+

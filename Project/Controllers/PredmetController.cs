@@ -49,7 +49,7 @@ namespace Project.Controllers
             var viewModel = new IndexView
             {
                 Predmetis = predmets.ToList(),
-                Specialnoctis = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
+                SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
             };
 
             return View(viewModel);
@@ -60,12 +60,12 @@ namespace Project.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            CreateOrEditView viewPredmet = new CreateOrEditView
+            var viewCreate = new EditView
             {
                 SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
             };
 
-            return View(viewPredmet);
+            return View(viewCreate);
         }
 
         [HttpPost]
@@ -79,7 +79,7 @@ namespace Project.Controllers
         }
         #endregion
 
-        #region Изменит Предмет
+        #region Изменить Предмет
 
         public async Task<IActionResult> Edit(int? Id)
         {
@@ -87,19 +87,19 @@ namespace Project.Controllers
             {
                 var prep = await db.Predmeti.FirstOrDefaultAsync(p => p.Id == Id);
 
-                if (prep != null)
-                {
-                    var viewEdit = new CreateOrEditView
+                if (prep == null)
+                    return NotFound();
+
+                    var viewEdit = new EditView
                     {
                         SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName"),
                         Predmet = prep
                     };
 
                     return View(viewEdit);
-                }
             }
 
-            return NotFound();
+            return BadRequest();
         }
 
         [HttpPost]

@@ -1,0 +1,23 @@
+﻿@model Project.Models.ModelViews.Student.EditView;
+
+<h2>Добавление студентов</h2>
+
+<form asp-action="create" asp-controller="Student">
+    
+    <p>
+        <label>Наименование специальност: </label><br/>
+         <select name="SpecId" asp-items="Model.SelectList"></select>
+    </p>
+    
+     <p>
+        <label>Курс: </label><br/>
+        <input type="number" name="Kurs" />
+    </p>
+    <p>
+        <label>ФИО Студента: </label><br/>
+        <input type="text" name="StudName" />
+    </p>
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+</form>
