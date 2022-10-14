@@ -4,11 +4,11 @@
    
     @Html.HiddenFor(model=>model.Predmet!.Id)
     <p>
-         <select asp-for="Predmet!.SpecId" asp-items="Model.SelectList"></select>
+         <select asp-for="Predmet!.SpecId" asp-items="Model.SpecList"></select>
     </p>
-    <p>
-        <label asp-for="Predmet!.Semesetr">Семестр</label><br/>
-        <input type="number" asp-for="Predmet!.Semesetr">
+   <p>
+        <label>Семестер: </label>
+        <select asp-for="Predmet!.Semesetr" asp-items="Model.SemestList"></select>
     </p>
 
     <p>

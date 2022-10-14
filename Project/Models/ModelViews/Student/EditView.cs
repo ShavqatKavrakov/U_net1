@@ -2,7 +2,7 @@
 
 namespace Project.Models.ModelViews.Student
 {
-    public class EditView:  SelectSpecialnoct
+    public class EditView:  SelectList_Spec_Smes
     {
        public Studenti? Student { get; set;}
     }

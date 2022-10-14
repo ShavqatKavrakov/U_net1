@@ -43,7 +43,7 @@ namespace Project.Controllers
 
             var viewIndex = new IndexView
             {
-                SelectList = new SelectList(await db.Specialnocti.ToListAsync(), "Id", "Name"),
+                SpecList = new SelectList(await db.Specialnocti.ToListAsync(), "Id", "Name"),
                 Studentis = await studentis.ToListAsync()
             };
 
@@ -56,7 +56,7 @@ namespace Project.Controllers
         {
             var viewCreate = new EditView
             {
-                SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
+                SpecList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
             };
 
             return View(viewCreate);
@@ -84,7 +84,7 @@ namespace Project.Controllers
                 var viewEdit = new EditView
                 {
                     Student = student,
-                    SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
+                    SpecList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
                 };
 
                 return View(viewEdit);

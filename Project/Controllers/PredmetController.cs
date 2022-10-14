@@ -49,7 +49,7 @@ namespace Project.Controllers
             var viewModel = new IndexView
             {
                 Predmetis = predmets.ToList(),
-                SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
+                SpecList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
             };
 
             return View(viewModel);
@@ -62,7 +62,7 @@ namespace Project.Controllers
         {
             var viewCreate = new EditView
             {
-                SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
+                SpecList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName")
             };
 
             return View(viewCreate);
@@ -92,7 +92,8 @@ namespace Project.Controllers
 
                     var viewEdit = new EditView
                     {
-                        SelectList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName"),
+                        SpecList = new SelectList(db.Specialnocti.ToList(), "Id", "SpecName"),
+                      
                         Predmet = prep
                     };
 

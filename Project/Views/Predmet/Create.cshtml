@@ -6,11 +6,11 @@
 
     <p>
 
-         <select name="SpecId" asp-items="Model.SelectList"></select>
+         <select name="SpecId" asp-items="Model.SpecList"></select>
     </p>
      <p>
         <label>Семестер: </label>
-        <input type="number" name="Semesetr" />
+        <select name="Semesetr" asp-items="Model.SemestList"></select>
     </p>
     <p>
         <label>Имя: </label>

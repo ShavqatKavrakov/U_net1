@@ -5,7 +5,7 @@
     @Html.HiddenFor(model=>model.Student!.Id)
      <p>
         <label asp-for="Student!.SpecId">Наименование Специальност</label><br/>
-         <select asp-for="Student!.SpecId" asp-items="Model.SelectList"></select>
+         <select asp-for="Student!.SpecId" asp-items="Model.SpecList"></select>
     </p>
     
     <p>
