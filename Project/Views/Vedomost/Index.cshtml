@@ -1,0 +1,36 @@
+﻿@model Project.Models.ModelViews.Vedomost.IndexView;
+
+<form asp-action="Index" asp-controller="Vedomost">
+
+    <p>
+        <select name="specId" asp-items="Model.SpecList"></select>
+    </p>
+    <p>
+        <select name="semestr" asp-items="Model.SemestList"></select>
+    </p>
+    <p>
+        <select name="predId" asp-items="Model.PredmetList" onChange="this.form.submit()"></select>
+    </p>
+    @if (ViewBag.Visable == "false")
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    ФИО Студента
+                </th>
+                <th>
+                    Оценка
+                </th>
+                @foreach (var item in Model.Vedomostis)
+                {
+                <tr>
+                    <td>@item.StudentId</td>
+                    <td>@item.Ball</td>
+                </tr>
+                }
+        </table>
+    }
+
+
+
+</form>
