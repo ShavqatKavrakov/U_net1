@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Project.Models;
 using Project.Models.ModelViews.Vedomost;
 
@@ -8,21 +9,18 @@ namespace Project.Controllers
     public class VedomostController : Controller
     {
         private readonly U_NetContext db;
+        List<Vedomosti> foundVedomost = new List<Vedomosti>();
 
         public VedomostController(U_NetContext db)
         {
             this.db = db;
         }
 
-        public IActionResult Index(int? specId,int? semestr,int? predId)
+        public IActionResult Index(int specId,int semestr,int predId,string? TipAttes,int prepId)
         {
             
-            if (specId == null || semestr == null || predId == null)
-                return BadRequest();
-
             var vedomosti = db.Vedomosti.ToList();
-            var foundVedomost = new List<Vedomosti>();
-
+            
             foreach (var v in vedomosti)
             {
                 if(v.SpecId== specId && v.Semestr==semestr && v.PredId == predId)
@@ -31,8 +29,27 @@ namespace Project.Controllers
                 }
             }
 
-            if (foundVedomost.Count == 0)
-                ViewBag.Visable ="true";
+            if (foundVedomost.Count == 0 && specId>0)
+            {
+                ViewBag.Visable = "true";
+                bool tipAttes = (TipAttes == "Зачет") ? false : true;
+
+                   var students=db.Studenti.Where(s=>s.SpecId==specId).ToList();
+
+                foreach (var s in students)
+                {
+                    foundVedomost.Add(new Vedomosti
+                    {
+                        Semestr = semestr,
+                        PredId = predId,
+                        SpecId = s.SpecId,
+                        Student = s,
+                        StudentId = s.Id,
+                        TipAttes = tipAttes,
+                        PrepId = prepId,
+                    }); ; 
+                }
+            }
             else
                 ViewBag.Visable = "false";
 

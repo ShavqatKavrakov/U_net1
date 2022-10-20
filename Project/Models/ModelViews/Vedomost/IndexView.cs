@@ -7,5 +7,6 @@ namespace Project.Models.ModelViews.Vedomost
         public SelectList PredmetList { get; set; } = new SelectList(new List<Predmeti>(), "Id", "Name");
         public SelectList PrepList { get; set; } = new SelectList(new List<Prepodavateli>(), "Id", "Name");
         public IEnumerable<Vedomosti> Vedomostis { get; set; }=new List<Vedomosti>();
+        public SelectList TipAtess{ get; set; } = new SelectList(new List<string> {"зачёт","эгзамен"});
     }
 }

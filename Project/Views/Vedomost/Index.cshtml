@@ -3,34 +3,46 @@
 <form asp-action="Index" asp-controller="Vedomost">
 
     <p>
+        <label>Специальность </label><br />
         <select name="specId" asp-items="Model.SpecList"></select>
     </p>
     <p>
+        <label>Семестр </label><br />
         <select name="semestr" asp-items="Model.SemestList"></select>
     </p>
     <p>
+        <label>Предмет </label><br />
         <select name="predId" asp-items="Model.PredmetList" onChange="this.form.submit()"></select>
     </p>
-    @if (ViewBag.Visable == "false")
+    @if (ViewBag.Visable == "true")
     {
-        <table class="table">
-            <tr>
-                <th>
-                    ФИО Студента
-                </th>
-                <th>
-                    Оценка
-                </th>
-                @foreach (var item in Model.Vedomostis)
-                {
-                <tr>
-                    <td>@item.StudentId</td>
-                    <td>@item.Ball</td>
-                </tr>
-                }
-        </table>
+        <p>
+            <label>Тип Атестации </label><br />
+            <select name="TipAttes" asp-items="Model.TipAtess"></select>
+        </p>
+        <p>
+            <label>ФИО преподавателя </label><br />
+            <select name="predId" asp-items="Model.PrepList"></select>
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
     }
 
-
-
+    <table class="table">
+        <tr>
+            <th>
+                ФИО Студента
+            </th>
+            <th>
+                Оценка
+            </th>
+            @foreach (var item in Model.Vedomostis)
+            {
+            <tr>
+                <td>@item.Student!.StudName</td>
+                <td>@item.Ball</td>
+            </tr>
+            }
+    </table>
 </form>
